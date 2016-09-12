@@ -6,18 +6,48 @@
   <title>android动画 | test</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="android的四种基本动画
-android里的动画可以分成四种基本类型">
+android里的动画可以分成四种基本类型
+
+
+scale
+alpha
+rotate
+translate
+
+
+而动画既可以通过xml配置文件进行实现，也可以通过代码来操作。通过xml的话较为方便，适合需要不断重用的动画，而代码操作起来则比较灵活方便，但是较为繁琐
+通过xml文件现在res文件夹下新建anim文件夹，然后在该目录下用xml文件配置好动画效果之后，只需要在">
 <meta property="og:type" content="article">
 <meta property="og:title" content="android动画">
 <meta property="og:url" content="http://yoursite.com/2016/09/12/android动画/index.html">
 <meta property="og:site_name" content="test">
 <meta property="og:description" content="android的四种基本动画
-android里的动画可以分成四种基本类型">
-<meta property="og:updated_time" content="2016-09-12T08:15:23.499Z">
+android里的动画可以分成四种基本类型
+
+
+scale
+alpha
+rotate
+translate
+
+
+而动画既可以通过xml配置文件进行实现，也可以通过代码来操作。通过xml的话较为方便，适合需要不断重用的动画，而代码操作起来则比较灵活方便，但是较为繁琐
+通过xml文件现在res文件夹下新建anim文件夹，然后在该目录下用xml文件配置好动画效果之后，只需要在">
+<meta property="og:updated_time" content="2016-09-12T08:16:25.843Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="android动画">
 <meta name="twitter:description" content="android的四种基本动画
-android里的动画可以分成四种基本类型">
+android里的动画可以分成四种基本类型
+
+
+scale
+alpha
+rotate
+translate
+
+
+而动画既可以通过xml配置文件进行实现，也可以通过代码来操作。通过xml的话较为方便，适合需要不断重用的动画，而代码操作起来则比较灵活方便，但是较为繁琐
+通过xml文件现在res文件夹下新建anim文件夹，然后在该目录下用xml文件配置好动画效果之后，只需要在">
   
     <link rel="alternate" href="/atom.xml" title="test" type="application/atom+xml">
   
@@ -90,7 +120,6 @@ android里的动画可以分成四种基本类型">
       
         <h1 id="android的四种基本动画"><a href="#android的四种基本动画" class="headerlink" title="android的四种基本动画"></a>android的四种基本动画</h1><hr>
 <p>android里的动画可以分成四种基本类型</p>
-<a id="more"></a>
 <blockquote>
 <ul>
 <li>scale</li>
@@ -100,7 +129,7 @@ android里的动画可以分成四种基本类型">
 </ul>
 </blockquote>
 <p>而动画既可以通过xml配置文件进行实现，也可以通过代码来操作。<br>通过xml的话较为方便，适合需要不断重用的动画，而代码操作起来则比较灵活方便，但是较为繁琐</p>
-<p>##通过xml文件<br>现在res文件夹下新建anim文件夹，然后在该目录下用xml文件配置好动画效果之后，只需要在代码中写下如下语句<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">Animation animation = AnimationUtils.loadAnimation(<span class="keyword">this</span>,R.anim.scale);<span class="comment">//载入xml文件</span></div><div class="line">mImageView.startAnimation(animation);<span class="comment">//使对应的View执行动画</span></div></pre></td></tr></table></figure></p>
+<h2 id="通过xml文件"><a href="#通过xml文件" class="headerlink" title="通过xml文件"></a>通过xml文件</h2><p>现在res文件夹下新建anim文件夹，然后在该目录下用xml文件配置好动画效果之后，只需要在代码中写下如下语句<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">Animation animation = AnimationUtils.loadAnimation(<span class="keyword">this</span>,R.anim.scale);<span class="comment">//载入xml文件</span></div><div class="line">mImageView.startAnimation(animation);<span class="comment">//使对应的View执行动画</span></div></pre></td></tr></table></figure></p>
 <h3 id="缩放动画"><a href="#缩放动画" class="headerlink" title="缩放动画"></a>缩放动画</h3><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">&lt;?xml version="1.0" encoding="utf-8"?&gt;</div><div class="line"><span class="tag">&lt;<span class="name">set</span></span></div><div class="line">    <span class="attr">xmlns:android</span>=<span class="string">"http://schemas.android.com/apk/res/android"</span></div><div class="line">    <span class="attr">android:fillBefore</span>=<span class="string">"false"</span></div><div class="line">    <span class="attr">android:duration</span>=<span class="string">"1000"</span>&gt;</div><div class="line"></div><div class="line">    <span class="tag">&lt;<span class="name">scale</span></span></div><div class="line">        <span class="attr">android:fromXScale</span>=<span class="string">"0dp"</span></div><div class="line">        <span class="attr">android:fromYScale</span>=<span class="string">"0dp"</span></div><div class="line">        <span class="attr">android:toXScale</span>=<span class="string">"1.0"</span></div><div class="line">        <span class="attr">android:toYScale</span>=<span class="string">"1.0"</span></div><div class="line">        <span class="attr">android:pivotX</span>=<span class="string">"50%"</span></div><div class="line">        <span class="attr">android:pivotY</span>=<span class="string">"50%"</span>/&gt;</div><div class="line"><span class="tag">&lt;/<span class="name">set</span>&gt;</span></div></pre></td></tr></table></figure>
 <h3 id="透明度动画"><a href="#透明度动画" class="headerlink" title="透明度动画"></a>透明度动画</h3><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">&lt;?xml version="1.0" encoding="utf-8"?&gt;</div><div class="line"><span class="tag">&lt;<span class="name">set</span> <span class="attr">xmlns:android</span>=<span class="string">"http://schemas.android.com/apk/res/android"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">alpha</span></span></div><div class="line">        <span class="attr">android:duration</span>=<span class="string">"3000"</span></div><div class="line">        <span class="attr">android:fromAlpha</span>=<span class="string">"0.0"</span></div><div class="line">        <span class="attr">android:toAlpha</span>=<span class="string">"1.0"</span>/&gt;</div><div class="line"><span class="tag">&lt;/<span class="name">set</span>&gt;</span></div></pre></td></tr></table></figure>
 <h3 id="旋转动画"><a href="#旋转动画" class="headerlink" title="旋转动画"></a>旋转动画</h3><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">&lt;?xml version="1.0" encoding="utf-8"?&gt;</div><div class="line"><span class="tag">&lt;<span class="name">set</span> <span class="attr">xmlns:android</span>=<span class="string">"http://schemas.android.com/apk/res/android"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">rotate</span></span></div><div class="line">        <span class="attr">android:fromDegrees</span>=<span class="string">"0"</span></div><div class="line">        <span class="attr">android:pivotX</span>=<span class="string">"50%"</span></div><div class="line">        <span class="attr">android:interpolator</span>=<span class="string">"@android:anim/accelerate_decelerate_interpolator"</span></div><div class="line">        <span class="attr">android:pivotY</span>=<span class="string">"50%"</span></div><div class="line">        <span class="attr">android:duration</span>=<span class="string">"1000"</span></div><div class="line">        <span class="attr">android:toDegrees</span>=<span class="string">"+720"</span>/&gt;</div><div class="line"><span class="tag">&lt;/<span class="name">set</span>&gt;</span></div></pre></td></tr></table></figure>
@@ -119,7 +148,7 @@ android里的动画可以分成四种基本类型">
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/09/12/android动画/" data-id="ciszryd0a0000isd3lbubnba8" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/09/12/android动画/" data-id="ciszrzr8j000170d3clnuno3f" class="article-share-link">Share</a>
       
       
     </footer>
