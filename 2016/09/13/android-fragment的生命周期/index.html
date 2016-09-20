@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>android fragment的生命周期 | test</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="fragment的生命周期fragment是android3.0之后新引入的组件，能够嵌在Activity中使用，可以看成是轻型的Activity，因此Fragment也有他自己的生命周期。
+
+
+创建部分
+onAttach()当fragment第一次被添加进Activity时调用，将fragment和Activity进行关联
+onCreate()当fragment第一次被创建的时候调用，发生在Ac">
+<meta property="og:type" content="article">
+<meta property="og:title" content="android fragment的生命周期">
+<meta property="og:url" content="http://yoursite.com/2016/09/13/android-fragment的生命周期/index.html">
+<meta property="og:site_name" content="test">
+<meta property="og:description" content="fragment的生命周期fragment是android3.0之后新引入的组件，能够嵌在Activity中使用，可以看成是轻型的Activity，因此Fragment也有他自己的生命周期。
+
+
+创建部分
+onAttach()当fragment第一次被添加进Activity时调用，将fragment和Activity进行关联
+onCreate()当fragment第一次被创建的时候调用，发生在Ac">
+<meta property="og:image" content="http://img.blog.csdn.net/20130513093815793">
+<meta property="og:updated_time" content="2016-09-14T10:12:24.282Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="android fragment的生命周期">
+<meta name="twitter:description" content="fragment的生命周期fragment是android3.0之后新引入的组件，能够嵌在Activity中使用，可以看成是轻型的Activity，因此Fragment也有他自己的生命周期。
+
+
+创建部分
+onAttach()当fragment第一次被添加进Activity时调用，将fragment和Activity进行关联
+onCreate()当fragment第一次被创建的时候调用，发生在Ac">
+<meta name="twitter:image" content="http://img.blog.csdn.net/20130513093815793">
+  
+    <link rel="alternate" href="/atom.xml" title="test" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">test</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-android-fragment的生命周期" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/09/13/android-fragment的生命周期/" class="article-date">
+  <time datetime="2016-09-13T13:44:44.000Z" itemprop="datePublished">2016-09-13</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      android fragment的生命周期
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="fragment的生命周期"><a href="#fragment的生命周期" class="headerlink" title="fragment的生命周期"></a>fragment的生命周期</h1><p>fragment是android3.0之后新引入的组件，能够嵌在Activity中使用，可以看成是轻型的Activity，因此Fragment也有他自己的生命周期。<br><img src="http://img.blog.csdn.net/20130513093815793" alt="frgment生命周期"></p>
+<blockquote>
+<ul>
+<li>创建部分<ol>
+<li><strong>onAttach()</strong><br>当fragment第一次被添加进Activity时调用，将fragment和Activity进行关联</li>
+<li><strong>onCreate()</strong><br>当fragment第一次被创建的时候调用，发生在Activity的onAttachFragment()之后，在这里你可以对任何非View层的数据进行初始化，比如getIntent()之类的，但绝对不要动View层的东西，因为这个方法可以在Activity的onCreate方法还没执行完的时候调用</li>
+<li><strong>onCreateView()</strong><br>inflate对应fragment的View，在这里你可以对View的元素进行初始化，比如findViewById()，但注意不要使用getView()来调用findViewById()因为getView()只有在该方法结束的时候才能获取到对象</li>
+<li><strong>onActivityCreated()</strong><br>当Activity的onCreate()方法调用完毕后被执行，在这里你可以做所有的修改，比如更改View的显示</li>
+</ol>
+</li>
+<li>前台显示<ol>
+<li><strong>onStart()</strong><br>当这个fragment对用户可见时调用。通常它依赖于包含它的activity的Activity.onStart</li>
+<li><strong>onResume()</strong><br>当这个fragment对用户可见并且正在运行时调用。通常它依赖于包含它的activity的Activity.onResume</li>
+</ol>
+</li>
+<li>后台隐藏<ol>
+<li><strong>onPause()</strong><br>当这个fragment对用户部分不可见时调用。通常它依赖于包含它的activity的Activity.onPause</li>
+<li><strong>onStop()</strong><br>当这个fragment对用户完全不可见时调用。通常它依赖于包含它的activity的Activity.onStop</li>
+</ol>
+</li>
+<li>销毁状态<ol>
+<li><strong>onDestroyView()</strong><br>将View与fragment剥离时被调用，比如</li>
+<li><strong>onDestroy()</strong></li>
+<li><strong>onDetach()</strong></li>
+</ol>
+</li>
+</ul>
+</blockquote>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2016/09/13/android-fragment的生命周期/" data-id="citbmtokk0001s8d3t3a6sest" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2016/09/14/saveInstanceState/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          saveInstanceState
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2016/09/12/android动画/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">android动画</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">September 2016</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2016/09/14/下拉刷新控件/">下拉刷新控件</a>
+          </li>
+        
+          <li>
+            <a href="/2016/09/14/saveInstanceState/">saveInstanceState</a>
+          </li>
+        
+          <li>
+            <a href="/2016/09/13/android-fragment的生命周期/">android fragment的生命周期</a>
+          </li>
+        
+          <li>
+            <a href="/2016/09/12/android动画/">android动画</a>
+          </li>
+        
+          <li>
+            <a href="/2016/09/12/hello-world/">Hello World</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2016 lecoan<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>

@@ -3,14 +3,27 @@
 <head>
   <meta charset="utf-8">
   
-  <title>test</title>
+  <title>saveInstanceState | test</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="test">
-<meta property="og:url" content="http://yoursite.com/index.html">
+  <meta name="description" content="saveInstanceState详解saveInstanceState这个一定不陌生，这个作为参数出现在onCreate()方法里。但是大多数情况下都用不到这个。实际上这个参数是为了重新启动应用储存数据存在的，跟她相关的还有两个方法：onSaveInstanceState() onRestoreInstanceState()。
+什么时候调用这两个方法？在android里的官方文档是这样写的
+
+当">
+<meta property="og:type" content="article">
+<meta property="og:title" content="saveInstanceState">
+<meta property="og:url" content="http://yoursite.com/2016/09/14/saveInstanceState/index.html">
 <meta property="og:site_name" content="test">
+<meta property="og:description" content="saveInstanceState详解saveInstanceState这个一定不陌生，这个作为参数出现在onCreate()方法里。但是大多数情况下都用不到这个。实际上这个参数是为了重新启动应用储存数据存在的，跟她相关的还有两个方法：onSaveInstanceState() onRestoreInstanceState()。
+什么时候调用这两个方法？在android里的官方文档是这样写的
+
+当">
+<meta property="og:updated_time" content="2016-09-20T15:24:42.363Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="test">
+<meta name="twitter:title" content="saveInstanceState">
+<meta name="twitter:description" content="saveInstanceState详解saveInstanceState这个一定不陌生，这个作为参数出现在onCreate()方法里。但是大多数情况下都用不到这个。实际上这个参数是为了重新启动应用储存数据存在的，跟她相关的还有两个方法：onSaveInstanceState() onRestoreInstanceState()。
+什么时候调用这两个方法？在android里的官方文档是这样写的
+
+当">
   
     <link rel="alternate" href="/atom.xml" title="test" type="application/atom+xml">
   
@@ -59,45 +72,7 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main">
-  
-    <article id="post-下拉刷新控件" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2016/09/14/下拉刷新控件/" class="article-date">
-  <time datetime="2016-09-14T10:18:03.000Z" itemprop="datePublished">2016-09-14</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/09/14/下拉刷新控件/">下拉刷新控件</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/09/14/下拉刷新控件/" data-id="citbmtokz0002s8d3a7ad1kbx" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-saveInstanceState" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-saveInstanceState" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2016/09/14/saveInstanceState/" class="article-date">
   <time datetime="2016-09-14T10:14:41.000Z" itemprop="datePublished">2016-09-14</time>
@@ -110,8 +85,8 @@
       <header class="article-header">
         
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/09/14/saveInstanceState/">saveInstanceState</a>
+    <h1 class="article-title" itemprop="name">
+      saveInstanceState
     </h1>
   
 
@@ -140,169 +115,28 @@
     </footer>
   </div>
   
-</article>
-
-
+    
+<nav id="article-nav">
   
-    <article id="post-android-fragment的生命周期" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2016/09/13/android-fragment的生命周期/" class="article-date">
-  <time datetime="2016-09-13T13:44:44.000Z" itemprop="datePublished">2016-09-13</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
+    <a href="/2016/09/14/下拉刷新控件/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
         
+          下拉刷新控件
+        
+      </div>
+    </a>
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/09/13/android-fragment的生命周期/">android fragment的生命周期</a>
-    </h1>
   
+    <a href="/2016/09/13/android-fragment的生命周期/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">android fragment的生命周期</div>
+    </a>
+  
+</nav>
 
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="fragment的生命周期"><a href="#fragment的生命周期" class="headerlink" title="fragment的生命周期"></a>fragment的生命周期</h1><p>fragment是android3.0之后新引入的组件，能够嵌在Activity中使用，可以看成是轻型的Activity，因此Fragment也有他自己的生命周期。<br><img src="http://img.blog.csdn.net/20130513093815793" alt="frgment生命周期"></p>
-<blockquote>
-<ul>
-<li>创建部分<ol>
-<li><strong>onAttach()</strong><br>当fragment第一次被添加进Activity时调用，将fragment和Activity进行关联</li>
-<li><strong>onCreate()</strong><br>当fragment第一次被创建的时候调用，发生在Activity的onAttachFragment()之后，在这里你可以对任何非View层的数据进行初始化，比如getIntent()之类的，但绝对不要动View层的东西，因为这个方法可以在Activity的onCreate方法还没执行完的时候调用</li>
-<li><strong>onCreateView()</strong><br>inflate对应fragment的View，在这里你可以对View的元素进行初始化，比如findViewById()，但注意不要使用getView()来调用findViewById()因为getView()只有在该方法结束的时候才能获取到对象</li>
-<li><strong>onActivityCreated()</strong><br>当Activity的onCreate()方法调用完毕后被执行，在这里你可以做所有的修改，比如更改View的显示</li>
-</ol>
-</li>
-<li>前台显示<ol>
-<li><strong>onStart()</strong><br>当这个fragment对用户可见时调用。通常它依赖于包含它的activity的Activity.onStart</li>
-<li><strong>onResume()</strong><br>当这个fragment对用户可见并且正在运行时调用。通常它依赖于包含它的activity的Activity.onResume</li>
-</ol>
-</li>
-<li>后台隐藏<ol>
-<li><strong>onPause()</strong><br>当这个fragment对用户部分不可见时调用。通常它依赖于包含它的activity的Activity.onPause</li>
-<li><strong>onStop()</strong><br>当这个fragment对用户完全不可见时调用。通常它依赖于包含它的activity的Activity.onStop</li>
-</ol>
-</li>
-<li>销毁状态<ol>
-<li><strong>onDestroyView()</strong><br>将View与fragment剥离时被调用，比如</li>
-<li><strong>onDestroy()</strong></li>
-<li><strong>onDetach()</strong></li>
-</ol>
-</li>
-</ul>
-</blockquote>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/09/13/android-fragment的生命周期/" data-id="citbmtokk0001s8d3t3a6sest" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
   
 </article>
-
-
-  
-    <article id="post-android动画" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2016/09/12/android动画/" class="article-date">
-  <time datetime="2016-09-12T06:45:45.000Z" itemprop="datePublished">2016-09-12</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/09/12/android动画/">android动画</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="android的四种基本动画"><a href="#android的四种基本动画" class="headerlink" title="android的四种基本动画"></a>android的四种基本动画</h1><hr>
-<p>android里的动画可以分成四种基本类型</p>
-<blockquote>
-<ul>
-<li>scale</li>
-<li>alpha</li>
-<li>rotate</li>
-<li>translate</li>
-</ul>
-</blockquote>
-        
-          <p class="article-more-link">
-            <a href="/2016/09/12/android动画/#more">Read More</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/09/12/android动画/" data-id="citbmtokz0004s8d3kod5mewn" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-hello-world" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2016/09/12/hello-world/" class="article-date">
-  <time datetime="2016-09-12T06:44:48.696Z" itemprop="datePublished">2016-09-12</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/09/12/hello-world/">Hello World</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo new <span class="string">"My New Post"</span></div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo server</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo generate</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo deploy</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/09/12/hello-world/" data-id="citbmtokz0003s8d3gp8y10rj" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
 
 </section>
         
