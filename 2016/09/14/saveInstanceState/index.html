@@ -5,25 +5,16 @@
   
   <title>saveInstanceState | test</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="saveInstanceState详解saveInstanceState这个一定不陌生，这个作为参数出现在onCreate()方法里。但是大多数情况下都用不到这个。实际上这个参数是为了重新启动应用储存数据存在的，跟她相关的还有两个方法：onSaveInstanceState() onRestoreInstanceState()。
-什么时候调用这两个方法？在android里的官方文档是这样写的
-
-当">
+  <meta name="description" content="saveInstanceState详解saveInstanceState这个一定不陌生，这个作为参数出现在onCreate()方法里。但是大多数情况下都用不到这个。实际上这个参数是为了重新启动应用储存数据存在的，跟她相关的还有两个方法：onSaveInstanceState() onRestoreInstanceState()。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="saveInstanceState">
 <meta property="og:url" content="http://yoursite.com/2016/09/14/saveInstanceState/index.html">
 <meta property="og:site_name" content="test">
-<meta property="og:description" content="saveInstanceState详解saveInstanceState这个一定不陌生，这个作为参数出现在onCreate()方法里。但是大多数情况下都用不到这个。实际上这个参数是为了重新启动应用储存数据存在的，跟她相关的还有两个方法：onSaveInstanceState() onRestoreInstanceState()。
-什么时候调用这两个方法？在android里的官方文档是这样写的
-
-当">
-<meta property="og:updated_time" content="2016-09-20T15:24:42.363Z">
+<meta property="og:description" content="saveInstanceState详解saveInstanceState这个一定不陌生，这个作为参数出现在onCreate()方法里。但是大多数情况下都用不到这个。实际上这个参数是为了重新启动应用储存数据存在的，跟她相关的还有两个方法：onSaveInstanceState() onRestoreInstanceState()。">
+<meta property="og:updated_time" content="2016-09-20T15:27:58.442Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="saveInstanceState">
-<meta name="twitter:description" content="saveInstanceState详解saveInstanceState这个一定不陌生，这个作为参数出现在onCreate()方法里。但是大多数情况下都用不到这个。实际上这个参数是为了重新启动应用储存数据存在的，跟她相关的还有两个方法：onSaveInstanceState() onRestoreInstanceState()。
-什么时候调用这两个方法？在android里的官方文档是这样写的
-
-当">
+<meta name="twitter:description" content="saveInstanceState详解saveInstanceState这个一定不陌生，这个作为参数出现在onCreate()方法里。但是大多数情况下都用不到这个。实际上这个参数是为了重新启动应用储存数据存在的，跟她相关的还有两个方法：onSaveInstanceState() onRestoreInstanceState()。">
   
     <link rel="alternate" href="/atom.xml" title="test" type="application/atom+xml">
   
@@ -94,14 +85,14 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="saveInstanceState详解"><a href="#saveInstanceState详解" class="headerlink" title="saveInstanceState详解"></a>saveInstanceState详解</h1><p>saveInstanceState这个一定不陌生，这个作为参数出现在onCreate()方法里。但是大多数情况下都用不到这个。实际上这个参数是为了重新启动应用储存数据存在的，跟她相关的还有两个方法：onSaveInstanceState() onRestoreInstanceState()。</p>
+        <h1 id="saveInstanceState详解"><a href="#saveInstanceState详解" class="headerlink" title="saveInstanceState详解"></a>saveInstanceState详解</h1><p>saveInstanceState这个一定不陌生，这个作为参数出现在onCreate()方法里。但是大多数情况下都用不到这个。实际上这个参数是为了重新启动应用储存数据存在的，跟她相关的还有两个方法：onSaveInstanceState() onRestoreInstanceState()。<br><a id="more"></a></p>
 <h2 id="什么时候调用这两个方法？"><a href="#什么时候调用这两个方法？" class="headerlink" title="什么时候调用这两个方法？"></a>什么时候调用这两个方法？</h2><p>在android里的官方文档是这样写的</p>
 <blockquote>
 <p>当您的Activity因用户按了返回 或Activity自行完成而被销毁时，系统的     Activity 实例概念将永久消失，因为行为指示不再需要Activity。           但是，如果系统因系统局限性（而非正常应用行为）而销毁Activity，尽管 Activity 实际实例已不在，系统会记住其存在，这样，如果用户导航回实例，系统会使用描述Activity被销毁时状态的一组已保存数据创建Activity的新实例。 系统用于恢复先前状态的已保存数据被称为“实例状态”，并且是 Bundle 对象中存储的键值对集合。</p>
 <p>默认情况下，系统会使用 Bundle 实例状态保存您的Activity布局（比如，输入到 EditText 对象中的文本值）中有关每个 View 对象的信息。 这样，如果您的Activity实例被销毁并重新创建，布局状态便恢复为其先前的状态，且您无需代码。 但是，您的Activity可能具有您要恢复的更多状态信息，比如跟踪用户在Activity中进度的成员变量。</p>
 </blockquote>
 <p>也就是说当系统在非用户自愿的情况下杀死Activity时，系统会调用这两个方法来保证不会给用户带来丢失数据的困扰</p>
-<p>##覆写这两个方法来实现设计者的高级需求<br>android默认的存储数据有时候可能不包含我们需要的信息，为了我们的需求，需要覆写对onSaveInstanceState()进行覆写<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onRestoreInstanceState</span><span class="params">(Bundle savedInstanceState)</span> </span>&#123;</div><div class="line">    <span class="comment">// Always call the superclass so it can restore the view hierarchy</span></div><div class="line">    <span class="keyword">super</span>.onRestoreInstanceState(savedInstanceState);</div><div class="line"></div><div class="line">    <span class="comment">// Restore state members from saved instance</span></div><div class="line">    mCurrentScore = savedInstanceState.getInt(STATE_SCORE);</div><div class="line">    mCurrentLevel = savedInstanceState.getInt(STATE_LEVEL);</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h2 id="覆写这两个方法来实现设计者的高级需求"><a href="#覆写这两个方法来实现设计者的高级需求" class="headerlink" title="覆写这两个方法来实现设计者的高级需求"></a>覆写这两个方法来实现设计者的高级需求</h2><p>android默认的存储数据有时候可能不包含我们需要的信息，为了我们的需求，需要覆写对onSaveInstanceState()进行覆写<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onRestoreInstanceState</span><span class="params">(Bundle savedInstanceState)</span> </span>&#123;</div><div class="line">    <span class="comment">// Always call the superclass so it can restore the view hierarchy</span></div><div class="line">    <span class="keyword">super</span>.onRestoreInstanceState(savedInstanceState);</div><div class="line"></div><div class="line">    <span class="comment">// Restore state members from saved instance</span></div><div class="line">    mCurrentScore = savedInstanceState.getInt(STATE_SCORE);</div><div class="line">    mCurrentLevel = savedInstanceState.getInt(STATE_LEVEL);</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
 <p>然后在onCreate()里<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@Override</span></div><div class="line"><span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onCreate</span><span class="params">(Bundle savedInstanceState)</span> </span>&#123;</div><div class="line">    <span class="keyword">super</span>.onCreate(savedInstanceState); <span class="comment">// Always call the superclass first</span></div><div class="line"></div><div class="line">    <span class="comment">// Check whether we're recreating a previously destroyed instance</span></div><div class="line">    <span class="keyword">if</span> (savedInstanceState != <span class="keyword">null</span>) &#123;</div><div class="line">        <span class="comment">// Restore value of members from saved state</span></div><div class="line">        mCurrentScore = savedInstanceState.getInt(STATE_SCORE);</div><div class="line">        mCurrentLevel = savedInstanceState.getInt(STATE_LEVEL);</div><div class="line">    &#125; </div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
 <p>当然也可以选择在onRestoreInstanceState()里进行覆写<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onRestoreInstanceState</span><span class="params">(Bundle savedInstanceState)</span> </span>&#123;</div><div class="line">    <span class="comment">// Always call the superclass so it can restore the view hierarchy</span></div><div class="line">    <span class="keyword">super</span>.onRestoreInstanceState(savedInstanceState);</div><div class="line"></div><div class="line">    <span class="comment">// Restore state members from saved instance</span></div><div class="line">    mCurrentScore = savedInstanceState.getInt(STATE_SCORE);</div><div class="line">    mCurrentLevel = savedInstanceState.getInt(STATE_LEVEL);</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
 <p>这样就不用判断saveInstanceState是否为空，因为只有在需要恢复数据的情况下系统才会调用这个方法<br>这个参数有时候还是很有用处的，比如你在做一款阅读APP，如果用户发现他把你的应用放进后台一会再打开的时候丢失了原来的页数，又变成了第一页，这样的体验一定是很差的，这时候就要用saveInstanceState来储存用户的页数</p>
@@ -109,7 +100,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/09/14/saveInstanceState/" data-id="citbmtokk0000s8d3brevfzwx" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/09/14/saveInstanceState/" data-id="citbmyquf00031kd33bu2ul2z" class="article-share-link">Share</a>
       
       
     </footer>

@@ -87,7 +87,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/09/14/下拉刷新控件/" data-id="citbmtokz0002s8d3a7ad1kbx" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/09/14/下拉刷新控件/" data-id="citbmyquf00041kd3d5fsicdg" class="article-share-link">Share</a>
       
       
     </footer>
@@ -119,22 +119,16 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="saveInstanceState详解"><a href="#saveInstanceState详解" class="headerlink" title="saveInstanceState详解"></a>saveInstanceState详解</h1><p>saveInstanceState这个一定不陌生，这个作为参数出现在onCreate()方法里。但是大多数情况下都用不到这个。实际上这个参数是为了重新启动应用储存数据存在的，跟她相关的还有两个方法：onSaveInstanceState() onRestoreInstanceState()。</p>
-<h2 id="什么时候调用这两个方法？"><a href="#什么时候调用这两个方法？" class="headerlink" title="什么时候调用这两个方法？"></a>什么时候调用这两个方法？</h2><p>在android里的官方文档是这样写的</p>
-<blockquote>
-<p>当您的Activity因用户按了返回 或Activity自行完成而被销毁时，系统的     Activity 实例概念将永久消失，因为行为指示不再需要Activity。           但是，如果系统因系统局限性（而非正常应用行为）而销毁Activity，尽管 Activity 实际实例已不在，系统会记住其存在，这样，如果用户导航回实例，系统会使用描述Activity被销毁时状态的一组已保存数据创建Activity的新实例。 系统用于恢复先前状态的已保存数据被称为“实例状态”，并且是 Bundle 对象中存储的键值对集合。</p>
-<p>默认情况下，系统会使用 Bundle 实例状态保存您的Activity布局（比如，输入到 EditText 对象中的文本值）中有关每个 View 对象的信息。 这样，如果您的Activity实例被销毁并重新创建，布局状态便恢复为其先前的状态，且您无需代码。 但是，您的Activity可能具有您要恢复的更多状态信息，比如跟踪用户在Activity中进度的成员变量。</p>
-</blockquote>
-<p>也就是说当系统在非用户自愿的情况下杀死Activity时，系统会调用这两个方法来保证不会给用户带来丢失数据的困扰</p>
-<p>##覆写这两个方法来实现设计者的高级需求<br>android默认的存储数据有时候可能不包含我们需要的信息，为了我们的需求，需要覆写对onSaveInstanceState()进行覆写<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onRestoreInstanceState</span><span class="params">(Bundle savedInstanceState)</span> </span>&#123;</div><div class="line">    <span class="comment">// Always call the superclass so it can restore the view hierarchy</span></div><div class="line">    <span class="keyword">super</span>.onRestoreInstanceState(savedInstanceState);</div><div class="line"></div><div class="line">    <span class="comment">// Restore state members from saved instance</span></div><div class="line">    mCurrentScore = savedInstanceState.getInt(STATE_SCORE);</div><div class="line">    mCurrentLevel = savedInstanceState.getInt(STATE_LEVEL);</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>然后在onCreate()里<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@Override</span></div><div class="line"><span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onCreate</span><span class="params">(Bundle savedInstanceState)</span> </span>&#123;</div><div class="line">    <span class="keyword">super</span>.onCreate(savedInstanceState); <span class="comment">// Always call the superclass first</span></div><div class="line"></div><div class="line">    <span class="comment">// Check whether we're recreating a previously destroyed instance</span></div><div class="line">    <span class="keyword">if</span> (savedInstanceState != <span class="keyword">null</span>) &#123;</div><div class="line">        <span class="comment">// Restore value of members from saved state</span></div><div class="line">        mCurrentScore = savedInstanceState.getInt(STATE_SCORE);</div><div class="line">        mCurrentLevel = savedInstanceState.getInt(STATE_LEVEL);</div><div class="line">    &#125; </div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>当然也可以选择在onRestoreInstanceState()里进行覆写<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onRestoreInstanceState</span><span class="params">(Bundle savedInstanceState)</span> </span>&#123;</div><div class="line">    <span class="comment">// Always call the superclass so it can restore the view hierarchy</span></div><div class="line">    <span class="keyword">super</span>.onRestoreInstanceState(savedInstanceState);</div><div class="line"></div><div class="line">    <span class="comment">// Restore state members from saved instance</span></div><div class="line">    mCurrentScore = savedInstanceState.getInt(STATE_SCORE);</div><div class="line">    mCurrentLevel = savedInstanceState.getInt(STATE_LEVEL);</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>这样就不用判断saveInstanceState是否为空，因为只有在需要恢复数据的情况下系统才会调用这个方法<br>这个参数有时候还是很有用处的，比如你在做一款阅读APP，如果用户发现他把你的应用放进后台一会再打开的时候丢失了原来的页数，又变成了第一页，这样的体验一定是很差的，这时候就要用saveInstanceState来储存用户的页数</p>
-
+        <h1 id="saveInstanceState详解"><a href="#saveInstanceState详解" class="headerlink" title="saveInstanceState详解"></a>saveInstanceState详解</h1><p>saveInstanceState这个一定不陌生，这个作为参数出现在onCreate()方法里。但是大多数情况下都用不到这个。实际上这个参数是为了重新启动应用储存数据存在的，跟她相关的还有两个方法：onSaveInstanceState() onRestoreInstanceState()。<br>
+        
+          <p class="article-more-link">
+            <a href="/2016/09/14/saveInstanceState/#more">Read More</a>
+          </p>
+        
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/09/14/saveInstanceState/" data-id="citbmtokk0000s8d3brevfzwx" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/09/14/saveInstanceState/" data-id="citbmyquf00031kd33bu2ul2z" class="article-share-link">Share</a>
       
       
     </footer>
@@ -166,39 +160,16 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="fragment的生命周期"><a href="#fragment的生命周期" class="headerlink" title="fragment的生命周期"></a>fragment的生命周期</h1><p>fragment是android3.0之后新引入的组件，能够嵌在Activity中使用，可以看成是轻型的Activity，因此Fragment也有他自己的生命周期。<br><img src="http://img.blog.csdn.net/20130513093815793" alt="frgment生命周期"></p>
-<blockquote>
-<ul>
-<li>创建部分<ol>
-<li><strong>onAttach()</strong><br>当fragment第一次被添加进Activity时调用，将fragment和Activity进行关联</li>
-<li><strong>onCreate()</strong><br>当fragment第一次被创建的时候调用，发生在Activity的onAttachFragment()之后，在这里你可以对任何非View层的数据进行初始化，比如getIntent()之类的，但绝对不要动View层的东西，因为这个方法可以在Activity的onCreate方法还没执行完的时候调用</li>
-<li><strong>onCreateView()</strong><br>inflate对应fragment的View，在这里你可以对View的元素进行初始化，比如findViewById()，但注意不要使用getView()来调用findViewById()因为getView()只有在该方法结束的时候才能获取到对象</li>
-<li><strong>onActivityCreated()</strong><br>当Activity的onCreate()方法调用完毕后被执行，在这里你可以做所有的修改，比如更改View的显示</li>
-</ol>
-</li>
-<li>前台显示<ol>
-<li><strong>onStart()</strong><br>当这个fragment对用户可见时调用。通常它依赖于包含它的activity的Activity.onStart</li>
-<li><strong>onResume()</strong><br>当这个fragment对用户可见并且正在运行时调用。通常它依赖于包含它的activity的Activity.onResume</li>
-</ol>
-</li>
-<li>后台隐藏<ol>
-<li><strong>onPause()</strong><br>当这个fragment对用户部分不可见时调用。通常它依赖于包含它的activity的Activity.onPause</li>
-<li><strong>onStop()</strong><br>当这个fragment对用户完全不可见时调用。通常它依赖于包含它的activity的Activity.onStop</li>
-</ol>
-</li>
-<li>销毁状态<ol>
-<li><strong>onDestroyView()</strong><br>将View与fragment剥离时被调用，比如</li>
-<li><strong>onDestroy()</strong></li>
-<li><strong>onDetach()</strong></li>
-</ol>
-</li>
-</ul>
-</blockquote>
-
+        <h1 id="fragment的生命周期"><a href="#fragment的生命周期" class="headerlink" title="fragment的生命周期"></a>fragment的生命周期</h1><p>fragment是android3.0之后新引入的组件，能够嵌在Activity中使用，可以看成是轻型的Activity，因此Fragment也有他自己的生命周期。<br>
+        
+          <p class="article-more-link">
+            <a href="/2016/09/13/android-fragment的生命周期/#more">Read More</a>
+          </p>
+        
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/09/13/android-fragment的生命周期/" data-id="citbmtokk0001s8d3t3a6sest" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/09/13/android-fragment的生命周期/" data-id="citbmyqtz00001kd3qbur9nzh" class="article-share-link">Share</a>
       
       
     </footer>
@@ -248,7 +219,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/09/12/android动画/" data-id="citbmtokz0004s8d3kod5mewn" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/09/12/android动画/" data-id="citbmyquf00011kd3kt9i8zu0" class="article-share-link">Share</a>
       
       
     </footer>
@@ -293,7 +264,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/09/12/hello-world/" data-id="citbmtokz0003s8d3gp8y10rj" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/09/12/hello-world/" data-id="citbmyquf00021kd3iau7s8j2" class="article-share-link">Share</a>
       
       
     </footer>
